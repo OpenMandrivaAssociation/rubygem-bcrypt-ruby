@@ -23,7 +23,7 @@ BuildRequires: ruby-rdoc
 BuildRequires: rubygem(rspec)
 BuildRequires: rubygem(rake)
 BuildRequires: rubygem(diff-lcs)
-BuildRequires: rubygem(bundle)
+BuildRequires: rubygem(bundler)
 Provides: rubygem(%{gemname}) = %{version}
 
 %description
