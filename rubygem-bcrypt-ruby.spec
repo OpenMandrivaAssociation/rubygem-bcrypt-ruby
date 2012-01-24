@@ -1,30 +1,18 @@
-# Generated from bcrypt-ruby-2.1.2.gem by gem2rpm -*- rpm-spec -*-
-%global gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
-%global gemname bcrypt-ruby
-%global geminstdir %{gemdir}/gems/%{gemname}-%{version}
-%{!?ruby_sitearch: %global ruby_sitearch %(ruby -rrbconfig -e 'puts Config::CONFIG["sitearchdir"]')}
+# Generated from bcrypt-ruby-3.0.1.gem by gem2rpm5 0.6.5 -*- rpm-spec -*-
+%define	rbname	bcrypt-ruby
 
-%global rubyabi 1.8
+Summary:	OpenBSD's bcrypt() password hashing algorithm
+Name:		rubygem-%{rbname}
 
-Summary: Wrapper around bcrypt() password hashing algorithm
-Name: rubygem-%{gemname}
-Version: 3.0.1
-Release: %mkrel 1
-Group: Development/Ruby 
-License: BSD with advertising and MIT
-URL: http://bcrypt-ruby.rubyforge.org
-Source0: http://rubygems.org/downloads/%{gemname}-%{version}.gem
-Patch0: rake2_6_0_compiling.patch
-Requires: rubygems
-Requires: ruby(abi) = %{rubyabi}
-BuildRequires: rubygems
-BuildRequires: ruby-devel
-BuildRequires: ruby-rdoc
-BuildRequires: rubygem(rspec)
-BuildRequires: rubygem(rake)
-BuildRequires: rubygem(diff-lcs)
-BuildRequires: rubygem(bundler)
-Provides: rubygem(%{gemname}) = %{version}
+Version:	3.0.1
+Release:	1
+Group:		Development/Ruby
+License:	GPLv2+ or Ruby
+URL:		http://bcrypt-ruby.rubyforge.org
+Source0:	http://gems.rubyforge.org/gems/%{rbname}-%{version}.gem
+BuildRequires:	rubygems 
+BuildRequires:	ruby-devel
+BuildRequires:	rubygem(rake)
 
 %description
 bcrypt() is a sophisticated and secure hash algorithm designed by The
@@ -33,51 +21,33 @@ for hashing passwords. bcrypt-ruby provides a simple, humane wrapper for
 safely handling
 passwords.
 
+%package	doc
+Summary:	Documentation for %{name}
+Group:		Books/Computer books
+Requires:	%{name} = %{EVRD}
+BuildArch:	noarch
+
+%description	doc
+Documents, RDoc & RI documentation for %{name}.
 
 %prep
-%setup -q -T -c
-
-
-gem install --local --install-dir ./%{gemdir} \
-            --force -V --rdoc %{SOURCE0}
-
-%patch0 -p1
-
+%setup -q
 
 %build
-mkdir -p ./%{gemdir}
-export CONFIGURE_ARGS="--with-cflags='%{optflags}'"
+%gem_build
+
 %install
-rm -rf %{buildroot}
-mkdir -p %{buildroot}%{gemdir} %{buildroot}%{ruby_sitearch}
-cp -a .%{gemdir}/* %{buildroot}%{gemdir}/
-
-mv %{buildroot}%{geminstdir}/ext/mri/bcrypt_ext.so %{buildroot}%{ruby_sitearch}
-rm -rf %{buildroot}%{geminstdir}/ext %{buildroot}%{geminstdir}/lib/bcrypt_ext.so
-rm -rf %{buildroot}%{geminstdir}/.gitignore
-rm -rf %{buildroot}%{geminstdir}/.rspec
-
-
-%clean
-rm -rf %{buildroot}
-
-%check
-pushd .%{geminstdir}
-rake spec --trace
+%gem_install
 
 %files
-%defattr(-, root, root, -)
-%dir %{geminstdir}
-%{geminstdir}/lib
-%doc %{geminstdir}/spec
-%doc %{gemdir}/doc/%{gemname}-%{version}
-%doc %{geminstdir}/Rakefile
-%doc %{geminstdir}/Gemfile
-%doc %{geminstdir}/Gemfile.lock
-%doc %{geminstdir}/README.md
-%doc %{geminstdir}/COPYING
-%doc %{geminstdir}/bcrypt-ruby.gemspec
-%doc %{geminstdir}/CHANGELOG
-%{gemdir}/cache/%{gemname}-%{version}.gem
-%{gemdir}/specifications/%{gemname}-%{version}.gemspec
-%{ruby_sitearch}/bcrypt_ext.so
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib
+%{ruby_sitearchdir}/*.so
+%{ruby_gemdir}/specifications/%{rbname}-%{version}.gemspec
+
+%files doc
+%{ruby_gemdir}/doc/%{rbname}-%{version}
+%{ruby_gemdir}/gems/%{rbname}-%{version}/*.md
+%{ruby_gemdir}/gems/%{rbname}-%{version}/CHANGELOG
+%{ruby_gemdir}/gems/%{rbname}-%{version}/COPYING
+%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/*.rb
