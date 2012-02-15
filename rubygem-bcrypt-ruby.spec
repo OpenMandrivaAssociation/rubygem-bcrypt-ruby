@@ -12,7 +12,6 @@ URL:		http://bcrypt-ruby.rubyforge.org
 Source0:	http://gems.rubyforge.org/gems/%{rbname}-%{version}.gem
 BuildRequires:	rubygems 
 BuildRequires:	ruby-devel
-BuildRequires:	rubygem(rake)
 
 %description
 bcrypt() is a sophisticated and secure hash algorithm designed by The
