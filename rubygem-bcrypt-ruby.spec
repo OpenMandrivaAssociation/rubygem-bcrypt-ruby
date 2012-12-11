@@ -50,3 +50,23 @@ Documents, RDoc & RI documentation for %{name}.
 %{ruby_gemdir}/gems/%{rbname}-%{version}/CHANGELOG
 %{ruby_gemdir}/gems/%{rbname}-%{version}/COPYING
 %{ruby_gemdir}/gems/%{rbname}-%{version}/lib/*.rb
+
+
+%changelog
+* Wed Feb 15 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 3.0.1-3
++ Revision: 774493
+- drop buildrequires on rake as it's now provided by ruby
+- mass rebuild of ruby packages against ruby 1.9.1
+
+* Tue Jan 24 2012 Alexander Khrukin <akhrukin@mandriva.org> 3.0.1-2
++ Revision: 767900
+- release bump
+- files section reworked
+
+* Fri Sep 30 2011 Alexander Barakin <abarakin@mandriva.org> 3.0.1-1
++ Revision: 702154
+- misspelling
+- add bundle build requirement
+- actual rubygems fix
+- imported package rubygem-bcrypt-ruby
+
