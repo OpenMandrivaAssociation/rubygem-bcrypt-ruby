@@ -5,7 +5,7 @@ Summary:	OpenBSD's bcrypt() password hashing algorithm
 Name:		rubygem-%{rbname}
 
 Version:	3.0.1
-Release:	5
+Release:	6
 Group:		Development/Ruby
 License:	GPLv2+ or Ruby
 URL:		http://bcrypt-ruby.rubyforge.org
