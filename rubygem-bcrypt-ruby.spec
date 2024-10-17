@@ -8,7 +8,7 @@ Version:	3.0.1
 Release:	6
 Group:		Development/Ruby
 License:	GPLv2+ or Ruby
-URL:		http://bcrypt-ruby.rubyforge.org
+URL:		https://bcrypt-ruby.rubyforge.org
 Source0:	http://gems.rubyforge.org/gems/%{rbname}-%{version}.gem
 BuildRequires:	rubygems 
 BuildRequires:	ruby-devel
